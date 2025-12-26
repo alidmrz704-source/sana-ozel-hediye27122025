@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doğum Günü</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+    body {
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') no-repeat center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    .screen {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 90%;
+      max-width: 350px;
+      animation: fadeIn 1s ease;
+    }
+    input {
+      padding: 10px;
+      width: 100%;
+      margin-top: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #e91e63;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #c2185b; }.hidden { display: none; }
+
+.roses {
+  position: absolute;
+  top: -100px;
+  font-size: 30px;
+  animation: fall 3s linear infinite;
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(110vh); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+h1 {
+  color: #e91e63;
+  animation: fadeIn 2s ease;
+}
+
+  </style>
+</head>
+<body>  <!-- Şifre Ekranı -->  <div class="screen" id="loginScreen">
+    <h2>Lütfen şifreyi giriniz</h2>
+    <input type="password" id="password" placeholder="Şifre" />
+    <button onclick="checkPassword()">Giriş</button>
+  </div>  <!-- Doğum Günü Ekranı -->  <div class="screen hidden" id="birthdayScreen">
+    <h1>🎉 DOĞUM GÜNÜN KUTLU OLSUN 🎉</h1>
+    <button onclick="exitSite()">Teşekkür ederim</button>
+  </div>  <script>
+    function checkPassword() {
+      const pass = document.getElementById('password').value;
+      if (pass === '27.12.2025') {
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('birthdayScreen').classList.remove('hidden');
+        createRoses();
+      } else {
+        alert('Şifre yanlış!');
+      }
+    }
+
+    function createRoses() {
+      for (let i = 0; i < 20; i++) {
+        const rose = document.createElement('div');
+        rose.className = 'roses';
+        rose.innerText = '🌹';
+        rose.style.left = Math.random() * 100 + 'vw';
+        rose.style.animationDuration = (2 + Math.random() * 3) + 's';
+        document.body.appendChild(rose);
+      }
+    }
+
+    function exitSite() {
+      window.location.href = 'https://www.google.com';
+    }
+  </script></body>
+</html>
